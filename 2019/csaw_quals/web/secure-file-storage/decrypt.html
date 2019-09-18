@@ -1,0 +1,19 @@
+<html>
+<meta charset="utf-8"/>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.9-1/crypto-js.min.js"></script>
+
+<script>
+function hex2a(hex) {
+    var str = '';
+    for (var i = 0; i < hex.length; i += 2) str += String.fromCharCode(parseInt(hex.substr(i, 2), 16));
+    return str;
+}
+
+var enc_flag = 'U2FsdGVkX18vg7gzzc/Q2XG2O5vpgFvBvX7nv4mLxfsuKQxvSrMjHu11kDPfUIYVtJ9b5ohVP7olboQV5MDOjQ==';
+var admin_secret = atob("wvEXTzNpd5xPostMnBqsqHzfz7Ns1yjqL9kwsuAx4ds=");
+var flag = CryptoJS.AES.decrypt(enc_flag, admin_secret).toString();
+
+document.write(hex2a(flag));
+</script>
+
+</html>
