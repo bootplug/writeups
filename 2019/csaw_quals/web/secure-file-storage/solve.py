@@ -72,12 +72,13 @@ def write(filename, content):
 
 def bulk_dl(path):
     root = lfi_list(path)
-    if root is not None:
+    if root:
         for fl in root:
             if fl in [".", ".."]:
                 continue
+                
             cont = lfi(path+'/'+fl)
-            if cont is not None and cont:
+            if cont:
                 filename = path.replace('/','__')+"__"+fl
                 with open("loot/"+filename, "wb") as f:
                     f.write(cont)
@@ -87,16 +88,15 @@ def bulk_dl(path):
 
 def grep(path, greptext, recursive=False):
     root = lfi_list(path)
-    if root is not None and root:
+    if root:
         for fl in root:
             if fl in [".", ".."]:
                 continue
+                
             cont = lfi(path+'/'+fl)
-            if cont is not None and cont:
-                #print(cont)
-                if greptext.encode('utf8') in cont:
-                    print("Found {} in {}".format(greptext, path+'/'+fl))
-                    print(cont)
+            if cont and greptext.encode('utf8') in cont:
+                print("Found {} in {}".format(greptext, path+'/'+fl))
+                print(cont)
             if recursive:
                 grep(path+'/'+fl, greptext, recursive=True)
 
