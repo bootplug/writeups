@@ -11,7 +11,7 @@
 
 Decompiling the code reveals just a single function, that outputs "YN" or "N". Giving random inputs to the binary produces "N", so we probably want it to print "YN" instead.
 
-```
+```C
   gets(flag, argv, a3);
   v5 = 0;
   for ( i = 0; i <= 0xC; ++i )
@@ -33,9 +33,9 @@ Decompiling the code reveals just a single function, that outputs "YN" or "N". G
 
 Basically, it reads in the flag as an argument, then does some fancy math in a loop over 0xC bytes. This gives the information that the flag is 0xC long. After each round, the difference between `flag[i]` (unmodified) and `v3` (calculated independently of the flag) is added to `v5`. We want `v5` to stay at 0 to get to the "YN" output. That means that for each loop, `flag[i]` must be equal to `v3`.
 
-We then fire up GDB, set a random flag of the correct length, and put a breakpoint at the place where they subtract v3 from flag[i]. Keep running this, and jot down the values of EAX for each round, and you get the flag.
+We then fire up GDB, set a random flag of the correct length, and put a breakpoint at the place where they subtract `v3` from `flag[i]`. Keep running this, and jot down the values of EAX for each round, and you get the flag.
 
-``` 
+```bash
 set args 1234567890123
 b *0x55555555494b
 ```
