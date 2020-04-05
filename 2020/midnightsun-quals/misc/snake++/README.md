@@ -384,3 +384,9 @@ fi;
 logText "THE END!";
 .
 ```
+
+Running it yields the flag!
+```
+A job well done using our proprietary programming language!
+Here is something for your effort: midnight{Forbidden_fruit_is_tasty}
+```
