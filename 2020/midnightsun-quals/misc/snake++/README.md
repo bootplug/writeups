@@ -240,8 +240,8 @@ The easiest way to solve this in my opinion is to make the snake move in the fol
 6. Go all the way left using line 18, and continue the same pattern.
 7. When going up or down, check the next position snake is going, if that position contains a bad apple, shoot it!
 
-Here is the code I wrote to solve the challenge. One might have to run it a few times, as it does not take account of
-bad apples while turning, and the snake needs to go upwards on an oddly number column for the pattern to work correctly.
+Here is the code I wrote to solve the challenge. One might have to run it a few times, as bad apples while turning are not
+taken into account, and the snake needs to go upwards on an oddly number column for the pattern to work correctly.
 
 ```bash
 logText "POS:";
