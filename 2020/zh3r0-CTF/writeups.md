@@ -43,7 +43,7 @@ http://galaxy3bhpzxecbywoa2j4tg43muepnhfalars4cce3fcx46qlc6t3id.onion/
 And then this one by looking for the obvious username from the task description `un1v3rsek1ng`:
 http://galaxy3bhpzxecbywoa2j4tg43muepnhfalars4cce3fcx46qlc6t3id.onion/profile/un1v3rsek1ng
 
-Found loads of fake pictures because someone sabotaged us :'(. Got help from admin and found the right page. 
+Found loads of fake pictures because someone sabotaged us :'(, but eventually found the right picture. 
 
 Then figured the pieces of text on the picture was base85, put the pieces together, decoded it and got the flag.
 
