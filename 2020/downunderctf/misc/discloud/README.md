@@ -73,6 +73,8 @@ With the `!meme sign` command it looks like we can make presigned links to share
 It looks like the name of the bucket is `epic-memez`. I also tried to create a few links to find a vulnerability here, but didn't find 
 anything during my few attempts, because I found something else that was interesting.
 
+## SSRF
+
 We can use `!meme get -su` to make the bot fetch internal sites, like the cloud instance's metadata api. This is located at:
 http://metadata.google.internal/0.1/meta-data, http://metadata.google.internal/computeMetadata/v1, or http://169.254.169.254/computeMetadata/v1
 
@@ -119,6 +121,8 @@ We can also check the scopes of the current service account:
 }
 ```
 With our current scope we can `View and manage your data across Google Cloud Platform services`. This seems pretty neat!
+
+## OAuth2 access token
 
 There is also another useful thing we can do with the Compute metadata API. We can create an OAuth2 access token. 
 By default, access tokens have the cloud-platform scope, which allows access to all Google Cloud Platform APIs, assuming IAM also allows access.
@@ -181,6 +185,9 @@ This token will expire after a while... But we will be quick! :) Now we can try 
 ```
 
 It looks like all of the memes we could get from the bot is in this bucket, but nothing else so this is a dead end :(
+
+## SecretManager
+
 In the task description there is a hint about SECRETS, so let's look into what we can do with the SecretManager REST API:
 https://cloud.google.com/secret-manager/docs/reference/rest
 
@@ -198,7 +205,11 @@ We can apparently get a list of all the available secrets, so what are we waitin
 }
 ```
 
-Oh no! We do not have access to view the secrets... Maybe there is another service account that has this kind of permission? According to the [documentation](https://cloud.google.com/iam/docs/reference/rest/v1/projects.serviceAccounts/list)
+Oh no! We do not have access to view the secrets... 
+
+## List service accounts
+
+Maybe there is another service account that has this kind of permission? According to the [documentation](https://cloud.google.com/iam/docs/reference/rest/v1/projects.serviceAccounts/list)
 we can get a list of all the service account for a specific project using the following request (We remember that the project name is `discloud-chal`):
 
 `curl -H "Authorization: Bearer ya29.c.Kn_dB1yqILFXvNzBMncPrpCALQ-4dhzfhNjIudh6ZCmaAtBNbGWzjTn9YmBSSxUDplTVcMmcuuKcw6qpK3fc68JT2BI7wrGHLcQ4mifGQ0AyVaQZGJQ1JKQxfIF015gLdNK8SeQjdQufCnXZTvWm0GirhKB7VtmheE1-r09n9khj" 'https://iam.googleapis.com/v1/projects/discloud-chal/serviceAccounts'`
@@ -240,6 +251,8 @@ This looks very promising! We actually found 3 service accounts :+1:
 
 `secret-manager@discloud-chal.iam.gserviceaccount.com` is probably the account we want to use, but how can we authenticate as this account?
 
+# Generate access token for another service account
+
 There is actually an API for creating access tokens for a specific service account here: https://cloud.google.com/iam/docs/reference/credentials/rest/v1/projects.serviceAccounts/generateAccessToken
 
 Let's check if it works!
@@ -256,6 +269,8 @@ I first tried to send an empty `scope` value, but that did not work, so I set it
   "expireTime": "2020-09-18T17:17:25Z"
 }
 ```
+
+## Last step!
 
 Now we can try to use this access token to get a list of all the secrets like we tried earlier.
 
