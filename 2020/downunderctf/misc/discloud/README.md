@@ -282,3 +282,4 @@ Running the command above yields the flag: `DUCTF{bot_boi_2_cloud_secrets}`
 Listing the service accounts and creating an access token for secret-manager was apparently an unintended way of solving this challenge. The intended
 way (written by the author) can be found [here](https://github.com/DownUnderCTF/Challenges_2020_public/blob/master/misc/discloud/writeup.md).
 
+**In retrospect:** I also did not try to use the 3rd service account we found earlier, so I wonder if using that account would've given me more access to the cloud infrastructure than the author intended me to get. Maybe we could've gotten access to other projects (challenges) or instances?
