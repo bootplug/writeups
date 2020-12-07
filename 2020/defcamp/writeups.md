@@ -626,7 +626,7 @@ The valid characters are `0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQR
 
 This looks like base64 to me!
 
-At this point we started looking at the other endpoints, and found out that `/backup` is a git repository. We dumped the repository using [git-dumper.py]() and find `.env.example` that contains an AES key:
+At this point we started looking at the other endpoints, and found out that `/backup` is a git repository. We dumped the repository using [git-dumper.py](https://github.com/arthaud/git-dumper) (I had to replae all ".git" with "backup" for it to work) and find `.env.example` that contains an AES key:
 
 `APP_KEY=base64:Wkt8DOa9t16Z+DSLKsy+5r4S0aA9JmdItAk9//NiKu0=`
 
