@@ -1036,7 +1036,25 @@ print(beststrings)
 ```
     
 ### kalf-game
-Change level to 10000 (at 0xE5A04) and the flag is put together and printed:
+In this challenge we are given a snake game written in rust. Since this is a
+huge binary the first thing we did was to try and find something interesting
+related to the game. By looking at strings in IDA we quickly find these:
+* `Level  finished!`
+* `is the victory level!`
+* `ctf{}`
+* etc.
+
+By following the xrefs to these strings we found an interesting function at
+`0xE53C0`. Even with the decompiler the code looks like crap, but we could see
+a lot of references to strings that look like part of the flag. At `0xE5A04`
+there's a check to see if some number is equal to 100000, and if it is the code
+proceeds to print some interesting stuff.
+
+We assumed that this was the "win" check, and that the code is checking the
+level we are currently on. So we added a breakpoint to check. In gdb we could
+verify that this value did in fact match the level. The solution was then to
+change the level to 10000 and let the program continue running. The flag is put
+together and printed:
 `ctf{ddba6614a32456631c125eb1a4327c52686c71d909a92ec05ea5eb510eae81d9}`
 
 
